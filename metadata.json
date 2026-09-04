@@ -1,0 +1,6 @@
+{
+  "name": "Arden Dental Studio",
+  "description": "Specialized adult dental clinic in Pasdaran, Tehran. Comprehensive dental care: implants, veneers, orthodontics, restorations, and preventive hygiene.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,194 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #FFFFFF;
+  --color-slate: #C2C6D3;
+  --color-steel: #858CA7;
+  --color-indigo: #48537B;
+  --color-navy: #0B194E;
+}
+
+:root {
+  --color-canvas: #FFFFFF;
+  --color-slate: #C2C6D3;
+  --color-steel: #858CA7;
+  --color-indigo: #48537B;
+  --color-navy: #0B194E;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background-color: #FFFFFF;
+  color: #0B194E;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.rtl-layout {
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, Tahoma, sans-serif;
+  direction: rtl;
+  text-align: right;
+}
+
+body.ltr-layout {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  direction: ltr;
+  text-align: left;
+}
+
+:focus-visible {
+  outline: 2px solid #48537B;
+  outline-offset: 2px;
+}
+
+/* ==========================================================================
+   UNIVERSAL INTERACTIVE STATES (CR-001-C)
+   Architectural light sweep / diagonal sheen & restrained hover/press states
+   Strictly using confirmed brand tokens: #FFFFFF, #C2C6D3, #858CA7, #48537B, #0B194E
+   ========================================================================== */
+
+.interactive-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              background-color 0.2s ease;
+}
+
+.interactive-card::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 42%,
+    rgba(194, 198, 211, 0.22) 50%,
+    transparent 58%,
+    transparent 100%
+  );
+  transform: translate(-100%, -100%);
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+}
+
+.interactive-card:hover {
+  transform: translateY(-2px);
+  border-color: #48537B;
+  box-shadow: 0 6px 16px -4px rgba(11, 25, 78, 0.08);
+}
+
+.interactive-card:hover::after,
+.interactive-card:focus-visible::after {
+  transform: translate(50%, 50%);
+  opacity: 1;
+}
+
+.interactive-card:active {
+  transform: translateY(0px) scale(0.995);
+}
+
+.interactive-btn {
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.18s ease,
+              border-color 0.18s ease,
+              box-shadow 0.18s ease;
+}
+
+.interactive-btn::after {
+  content: '';
+  position: absolute;
+  top: -60%;
+  left: -60%;
+  width: 220%;
+  height: 220%;
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(255, 255, 255, 0.16) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+  transform: translate(-100%, -100%);
+  transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease;
+  pointer-events: none;
+  opacity: 0;
+  z-index: 10;
+}
+
+.interactive-btn-light::after {
+  background: linear-gradient(
+    135deg,
+    transparent 0%,
+    transparent 40%,
+    rgba(194, 198, 211, 0.3) 50%,
+    transparent 60%,
+    transparent 100%
+  );
+}
+
+.interactive-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px -2px rgba(11, 25, 78, 0.12);
+}
+
+.interactive-btn:hover::after,
+.interactive-btn:focus-visible::after {
+  transform: translate(50%, 50%);
+  opacity: 1;
+}
+
+.interactive-btn:active {
+  transform: translateY(1px) scale(0.99);
+}
+
+.interactive-link {
+  transition: color 0.15s ease, background-color 0.15s ease, transform 0.15s ease;
+}
+
+.interactive-link:hover {
+  transform: translateY(-0.5px);
+}
+
+.interactive-link:active {
+  transform: translateY(0.5px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .interactive-card,
+  .interactive-btn,
+  .interactive-link {
+    transform: none !important;
+    transition: none !important;
+  }
+  .interactive-card::after,
+  .interactive-btn::after {
+    display: none !important;
+    transform: none !important;
+    opacity: 0 !important;
+  }
+}
