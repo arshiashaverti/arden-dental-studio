@@ -13,8 +13,17 @@ import { clinicData } from './config/site';
 import { blogData } from './data/blog';
 
 function getPath() {
-  const path = window.location.pathname.replace(/\/+$/, '');
-  return path || '/';
+  const pathname = window.location.pathname.replace(/\/+$/, '') || '/';
+  const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
+
+  if (base && base !== '/') {
+    if (pathname === base) return '/';
+    if (pathname.startsWith(`${base}/`)) {
+      return pathname.slice(base.length) || '/';
+    }
+  }
+
+  return pathname || '/';
 }
 
 function AppContent() {

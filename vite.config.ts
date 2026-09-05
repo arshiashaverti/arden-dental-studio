@@ -5,7 +5,7 @@ import {defineConfig} from 'vite';
 
 export default defineConfig(() => {
   return {
-    base: '/',
+    base: '/arden-dental-studio/',
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
